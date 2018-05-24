@@ -1,6 +1,7 @@
 package com.mmall.dao;
 
 import com.mmall.pojo.Category;
+import com.mmall.pojo.Product;
 
 import java.util.List;
 
