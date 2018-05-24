@@ -28,4 +28,16 @@ public interface UserMapper {
 
     //返回用户username的密码问题
     String selectQuestionByUsername(String username);
+
+    //返回用户名为username，密码问题为question，问题答案为answer的记录数，有记录数就表示查到了answer
+    int checkAnswer(@Param("username") String username, @Param("question") String question, @Param("answer") String answer);
+
+    //根据用户名和新密码来更新密码，返回生效的行数
+    int updatePasswordByUsername(@Param("username") String username, @Param("passwordNew") String passwordNew);
+
+    //根据userId和password来查找数据库中是否有记录
+    int checkPassword(@Param("password") String password, @Param("userId") Integer userId);
+
+    //查找数据库中是否已经有了这个email
+    int checkEmailByUserId(@Param("email") String email, @Param("userId") Integer userId);
 }

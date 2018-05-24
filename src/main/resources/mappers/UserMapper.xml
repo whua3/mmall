@@ -159,7 +159,7 @@
 
   <select id="checkEmail" resultType="int" parameterType="string">
     SELECT COUNT(1) FROM mmall_user
-    WHERE username = #{email}
+    WHERE email = #{email}
   </select>
 
   <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
@@ -175,6 +175,37 @@
     question
     FROM mmall_user
     WHERE username = #{username}
+  </select>
+
+  <select id="checkAnswer" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    FROM mmall_user
+    WHERE username = #{username}
+    and question = #{question}
+    and answer = #{answer}
+  </select>
+
+  <update id="updatePasswordByUsername" parameterType="map">
+    UPDATE mmall_user
+    SET password = #{passwordNew},update_time = now()
+    WHERE username = #{username}
+  </update>
+
+  <select id="checkPassword" parameterType="map" resultType="java.lang.Integer">
+    SELECT
+    COUNT(1)
+    FROM mmall_user
+    WHERE id = #{userId}
+    and password = #{password}
+  </select>
+
+  <select id="checkEmailByUserId" parameterType="map" resultType="int">
+    SELECT
+    COUNT(1)
+    FROM mmall_user
+    WHERE email = #{email}
+    and id != #{userId}
   </select>
 
 </mapper>
