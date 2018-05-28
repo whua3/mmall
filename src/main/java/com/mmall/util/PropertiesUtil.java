@@ -21,7 +21,7 @@ public class PropertiesUtil {
     private static Properties props;
 
     static {
-        String fileName = "mmall_properties";
+        String fileName = "mmall.properties";
         props = new Properties();
         try {
             props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName), "UTF-8"));
@@ -39,9 +39,10 @@ public class PropertiesUtil {
     }
 
     public static String getProperty(String key, String defaultValue) {
+
         String value = props.getProperty(key.trim());
         if (StringUtils.isBlank(value)) {
-            return defaultValue;
+            value = defaultValue;
         }
         return value.trim();
     }
